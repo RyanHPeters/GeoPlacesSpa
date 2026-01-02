@@ -6,19 +6,19 @@ This repository demonstrates how to build a spatially-enabled web application wi
 
 ---
 
-## ✨ Features
+##  Features
 
-- 🌍 Location-aware browsing of places
-- 📍 Nearby search based on user location
-- 📏 Adjustable search radius (meters)
-- 🧭 Deterministic localhost behavior (NYC fallback)
-- 🧩 Clean API contracts (DTO-based, no EF leakage)
-- 🧠 Spatial logic handled server-side
-- 🚫 No CORS or proxy configuration needed
+-  Location-aware browsing of places
+-  Nearby search based on user location
+-  Adjustable search radius (meters)
+-  Deterministic localhost behavior (NYC fallback)
+-  Clean API contracts (DTO-based, no EF leakage)
+-  Spatial logic handled server-side
+-  No CORS or proxy configuration needed
 
 ---
 
-## 🧱 Architecture Overview
+##  Architecture Overview
 
 ```
 Browser
@@ -44,7 +44,7 @@ PostgreSQL (PostGIS enabled)
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
 - ASP.NET Core (.NET 8)
@@ -65,7 +65,7 @@ PostgreSQL (PostGIS enabled)
 
 ---
 
-## 📁 Project Structure (Simplified)
+## Project Structure (Simplified)
 
 ```
 backend/
@@ -93,7 +93,7 @@ GeoPlacesSpa.sln
 
 ---
 
-### 1️⃣ Start the Database
+### 1 Start the Database
 
 ```bash
 docker-compose up -d
@@ -103,7 +103,7 @@ Ensure PostGIS is enabled in the database.
 
 ---
 
-### 2️⃣ Build the Angular App
+### 2️ Build the Angular App
 
 ```bash
 cd backend/GeoPlaces.Web/ClientApp
@@ -119,7 +119,7 @@ backend/GeoPlaces.Web/wwwroot/browser
 
 ---
 
-### 3️⃣ Run the Backend
+### 3️ Run the Backend
 
 ```bash
 dotnet run --project backend/GeoPlaces.Web
@@ -129,7 +129,7 @@ Or run **GeoPlaces.Web** from Visual Studio.
 
 ---
 
-### 4️⃣ Access the App
+### 4️ Access the App
 
 - **Angular SPA**  
   http://localhost:5000/
@@ -139,7 +139,7 @@ Or run **GeoPlaces.Web** from Visual Studio.
 
 ---
 
-## 🧪 Localhost Behavior
+##  Localhost Behavior
 
 When running locally:
 
@@ -149,7 +149,7 @@ When running locally:
 
 ---
 
-## 📡 API Notes
+##  API Notes
 
 - DTO-based responses only
 - Distances are expressed in **meters**
@@ -158,7 +158,7 @@ When running locally:
 
 ---
 
-## 🔒 Design Decisions
+##  Design Decisions
 
 - **Angular is built, not served**  
   No `ng serve`, no proxy configuration.
@@ -171,7 +171,7 @@ When running locally:
 
 ---
 
-## 🛣️ Possible Enhancements
+##  Possible Enhancements
 
 - Pagination and filtering
 - Authentication / authorization
@@ -182,7 +182,7 @@ When running locally:
 
 ---
 
-## 📌 Summary
+##  Summary
 
 GeoPlaces is a practical example of a **location-aware SPA** that emphasizes:
 
@@ -198,7 +198,7 @@ Ideal as a learning project, interview discussion piece, or foundation for more 
 
 ## TODO / Future Improvements
 
-### Architecture and Boundaries
+### COMPLETE - Architecture and Boundaries
 - Separate concerns: move DB access out of controllers into a repository/service layer. Controllers should be thin orchestration.
 - Formalize DTOs: establish read/write DTOs and keep EF entities internal to the data layer. Avoid leaking spatial library types to the API surface.
 - Introduce a minimal domain layer so business rules do not live in controllers or infrastructure services.
