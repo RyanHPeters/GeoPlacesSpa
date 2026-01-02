@@ -1,5 +1,7 @@
 using GeoPlaces.Contracts.Events;
 using GeoPlaces.Web.Data;
+using GeoPlaces.Web.Application.Places;
+using GeoPlaces.Web.Data.Repositories;
 using GeoPlaces.Web.Infrastructure;
 using GeoPlaces.Web.Services;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient<IGeoIpService, GeoIpService>();
+
+builder.Services.AddScoped<IPlaceRepository, PlaceRepositoryEf>();
+builder.Services.AddScoped<IPlaceSpatialRepository, PlaceSpatialRepositoryDapper>();
+builder.Services.AddScoped<IPlacesService, PlacesService>();
+
 
 builder.Services.AddDbContext<PlacesDbContext>(options =>
 {

@@ -1,11 +1,11 @@
-using GeoPlaces.Web.Models;
+using GeoPlaces.Web.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeoPlaces.Web.Data;
 
 public class PlacesDbContext : DbContext
 {
-    public DbSet<Place> Places => Set<Place>();
+    public DbSet<PlaceEntity> Places => Set<PlaceEntity>();
 
     public PlacesDbContext(DbContextOptions<PlacesDbContext> options)
         : base(options)
@@ -14,9 +14,10 @@ public class PlacesDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var entity = modelBuilder.Entity<Place>();
+        var entity = modelBuilder.Entity<PlaceEntity>();
         entity.ToTable("places");
-        entity.HasKey(x => x.id);
+        entity.HasKey(x => x.Id);
+        entity.Property(x => x.Id).HasColumnName("id");
         entity.Property(x => x.Name).HasColumnName("name");
         entity.Property(x => x.Category).HasColumnName("category");
         entity.Property(x => x.Location).HasColumnName("location");
