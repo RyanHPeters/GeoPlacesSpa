@@ -71,14 +71,68 @@ PostgreSQL (PostGIS enabled)
 backend/
   GeoPlaces.Web/
     Controllers/
+      PlacesController.cs
+      LocationController.cs
+
+    Application/
+      Places/
+        IPlacesService.cs
+        PlacesService.cs
+
+    Domain/
+      Places/
+        Place.cs
+        GeoPoint.cs
+        PlaceRules.cs
+
     Data/
-    Models/
+      Entities/
+        PlaceEntity.cs
+
+      Repositories/
+        IPlaceRepository.cs
+        IPlaceSpatialRepository.cs
+        PlaceRepositoryEf.cs
+        PlaceSpatialRepositoryDapper.cs
+
+      Queries/
+        NearbyPlaceRow.cs
+
+      PlacesDbContext.cs
+
+    Contracts/
+      Places/
+        CreatePlaceRequest.cs
+        PlaceDto.cs
+        NearbyPlaceDto.cs
+
+      Location/
+        MyLocationDto.cs
+
     Services/
-    wwwroot/          ← Angular build output
-    ClientApp/        ← Angular source
+      GeoIpLocationService.cs
+      EventPublisher.cs
+
+    wwwroot/
+      browser/            ← Angular build output
+
+    Program.cs
+    appsettings.json
+
+  ClientApp/
+    src/
+      app/
+        app.component.ts
+        app.component.html
+        places.service.ts
+        location.service.ts
+      environments/
+    angular.json
+    package.json
 
 docker-compose.yml
 GeoPlacesSpa.sln
+README.md
 ```
 
 ---
