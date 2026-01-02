@@ -42,7 +42,7 @@ public class PlacesController : ControllerBase
             p.CreatedAt
         ));
 
-        return Ok(dtos);
+        return Ok(dtos); 
     }
 
     [HttpPost]
