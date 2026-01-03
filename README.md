@@ -257,7 +257,7 @@ Ideal as a learning project, interview discussion piece, or foundation for more 
 - Formalize DTOs: establish read/write DTOs and keep EF entities internal to the data layer. Avoid leaking spatial library types to the API surface.
 - Introduce a minimal domain layer so business rules do not live in controllers or infrastructure services.
 
-### API Design and Contract Quality
+### COMPLETE - API Design and Contract Quality
 - Standardize response shapes (consistent envelopes and error formats).
 - Add API versioning (e.g., `/v1` route strategy).
 - Add pagination, sorting, and filtering to list endpoints.
