@@ -1,4 +1,5 @@
 using GeoPlaces.Contracts.Events;
+using GeoPlaces.Web.Application.Common;
 using GeoPlaces.Web.Contracts.Places;
 using GeoPlaces.Web.Data.Repositories;
 using GeoPlaces.Web.Domain.Places;
@@ -21,11 +22,18 @@ public class PlacesService : IPlacesService
         _publisher = publisher;
     }
 
-    public async Task<IReadOnlyList<PlaceDto>> GetAllAsync(CancellationToken ct)
+    public async Task<PagedItems<PlaceDto>> GetAllPagedAsync(
+    int page,
+    int pageSize,
+    string? category,
+    string? q,
+    string? sort,
+    string? order,
+    CancellationToken ct)
     {
-        var places = await _repo.GetAllAsync(ct);
+        var result = await _repo.GetAllPagedAsync(page, pageSize, category, q, sort, order, ct);
 
-        return places.Select(p => new PlaceDto(
+        var dtos = result.Items.Select(p => new PlaceDto(
             p.Id,
             p.Name,
             p.Category,
@@ -33,6 +41,8 @@ public class PlacesService : IPlacesService
             p.Location.Longitude,
             p.CreatedAt
         )).ToList();
+
+        return new PagedItems<PlaceDto>(dtos, result.TotalCount);
     }
 
     public async Task<PlaceDto> CreateAsync(CreatePlaceRequest request, CancellationToken ct)

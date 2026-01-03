@@ -1,11 +1,13 @@
 ﻿using GeoPlaces.Web.Models;
 using GeoPlaces.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
 
 namespace GeoPlaces.Web.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class LocationController : ControllerBase
 {
     private readonly IGeoIpService _geo;
