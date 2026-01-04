@@ -1,0 +1,81 @@
+<div class="page">
+  <h1>GeoPlaces</h1>
+
+  <div class="toolbar">
+    <button type="button"
+            (click)="loadAllPlaces()"
+            [disabled]="loadingAll">
+      {{ loadingAll ? 'Loading...' : 'List all locations' }}
+    </button>
+
+    <label class="toolbar-item">
+      Radius:
+      <select [(ngModel)]="selectedRadius">
+        <option *ngFor="let r of radiuses" [ngValue]="r.value">
+          {{ r.label }}
+        </option>
+      </select>
+    </label>
+
+    <button type="button"
+            (click)="loadNearbyPlaces()"
+            [disabled]="loadingNearby">
+      {{ loadingNearby ? 'Loading...' : 'List nearby locations' }}
+    </button>
+  </div>
+
+  <div *ngIf="myLocation as loc" class="location-card">
+    <strong>Your Location ({{ loc.source }}):</strong>
+    {{ loc.latitude }}, {{ loc.longitude }}
+    <span *ngIf="loc.city">
+      — {{ loc.city }}, {{ loc.region }} {{ loc.country }}
+    </span>
+  </div>
+
+  <h2>All Locations</h2>
+
+  <div class="paging">
+    <button type="button"
+            (click)="prevPage()"
+            [disabled]="loadingAll || page <= 1">
+      Prev
+    </button>
+
+    <span class="paging-info">
+      Page {{ page }} of {{ totalPages }}
+      <span *ngIf="totalCount">({{ totalCount }} total)</span>
+    </span>
+
+    <button type="button"
+            (click)="nextPage()"
+            [disabled]="loadingAll || page >= totalPages">
+      Next
+    </button>
+
+    <label class="paging-size">
+      Page size:
+      <select [(ngModel)]="pageSize" (ngModelChange)="onPageSizeChanged()">
+        <option [ngValue]="5">5</option>
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="25">25</option>
+        <option [ngValue]="50">50</option>
+      </select>
+    </label>
+  </div>
+
+  <ul class="list">
+    <li *ngFor="let p of allPlaces" class="list-item">
+      <strong>{{ p.name }}</strong>
+      {{ p.category }} — {{ p.latitude }}, {{ p.longitude }}
+    </li>
+  </ul>
+
+  <h2 class="section-spacing">Nearby Locations</h2>
+
+  <ul class="list">
+    <li *ngFor="let p of nearbyPlaces" class="list-item">
+      <strong>{{ p.name }}</strong>
+      {{ p.category }} — {{ p.distance_meters ?? 'n/a' }} meters
+    </li>
+  </ul>
+</div>

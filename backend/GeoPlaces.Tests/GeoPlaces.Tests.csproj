@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeoPlaces.Web\GeoPlaces.Web.csproj" />
+    <ProjectReference Include="..\GeoPlaces.Api\GeoPlaces.Api.csproj" />
     <ProjectReference Include="..\GeoPlaces.Contracts\GeoPlaces.Contracts.csproj" />
   </ItemGroup>
 

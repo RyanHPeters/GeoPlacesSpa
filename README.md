@@ -68,71 +68,87 @@ PostgreSQL (PostGIS enabled)
 ## Project Structure (Simplified)
 
 ```
-backend/
-  GeoPlaces.Web/
-    Controllers/
-      PlacesController.cs
-      LocationController.cs
+GeoPlaces/
+│
+├── backend/
+│   │
+│   ├── GeoPlaces.Api/
+│   │   ├── Controllers/
+│   │   │   ├── PlacesController.cs
+│   │   │   └── LocationController.cs
+│   │   ├── Middleware/
+│   │   │   └── GlobalExceptionHandler.cs
+│   │   ├── Program.cs
+│   │   └── GeoPlaces.Api.csproj
+│   │
+│   ├── GeoPlaces.Application/
+│   │   ├── Abstractions/
+│   │   │   ├── IPlacesService.cs
+│   │   │   ├── IPlaceRepository.cs
+│   │   │   ├── IPlaceSpatialRepository.cs
+│   │   │   └── Idempotency/
+│   │   │       └── IIdempotencyStore.cs
+│   │   ├── Places/
+│   │   │   └── PlacesService.cs
+│   │   ├── Validation/
+│   │   │   └── PlaceValidators.cs
+│   │   └── GeoPlaces.Application.csproj
+│   │
+│   ├── GeoPlaces.Domain/
+│   │   ├── Entities/
+│   │   │   └── Place.cs
+│   │   ├── ValueObjects/
+│   │   │   └── GeoPoint.cs
+│   │   └── Common/
+│   │       └── PagedItems.cs
+│   │
+│   ├── GeoPlaces.Contracts/
+│   │   ├── Places/
+│   │   │   ├── PlaceDto.cs
+│   │   │   ├── NearbyPlaceDto.cs
+│   │   │   └── CreatePlaceRequest.cs
+│   │   └── Location/
+│   │       └── MyLocationDto.cs
+│   │
+│   ├── GeoPlaces.Data/
+│   │   ├── Db/
+│   │   │   └── PlacesDbContext.cs
+│   │   ├── Repositories/
+│   │   │   ├── PlaceRepositoryEf.cs
+│   │   │   └── PlaceSpatialRepositoryDapper.cs
+│   │   ├── Idempotency/
+│   │   │   └── IdempotencyStoreDapper.cs
+│   │   └── GeoPlaces.Data.csproj
+│   │
+│   ├── GeoPlaces.Infrastructure/
+│   │   ├── GeoIp/
+│   │   │   └── GeoIpService.cs
+│   │   ├── Paging/
+│   │   │   └── PagingHeaders.cs
+│   │   └── GeoPlaces.Infrastructure.csproj
+│   │
+│   └── GeoPlaces.Tests/
+│       ├── Places/
+│       │   └── PlacesServiceTests.cs
+│       └── GeoPlaces.Tests.csproj
+│
+├── frontend/
+│   │
+│   └── clientapp/
+│       ├── src/
+│       │   ├── app/
+│       │   │   ├── app.component.ts
+│       │   │   ├── app.component.html
+│       │   │   ├── places.service.ts
+│       │   │   └── location.service.ts
+│       │   └── main.ts
+│       ├── angular.json
+│       └── package.json
+│
+├── docker-compose.yml
+├── README.md
+└── GeoPlaces.sln
 
-    Application/
-      Places/
-        IPlacesService.cs
-        PlacesService.cs
-
-    Domain/
-      Places/
-        Place.cs
-        GeoPoint.cs
-        PlaceRules.cs
-
-    Data/
-      Entities/
-        PlaceEntity.cs
-
-      Repositories/
-        IPlaceRepository.cs
-        IPlaceSpatialRepository.cs
-        PlaceRepositoryEf.cs
-        PlaceSpatialRepositoryDapper.cs
-
-      Queries/
-        NearbyPlaceRow.cs
-
-      PlacesDbContext.cs
-
-    Contracts/
-      Places/
-        CreatePlaceRequest.cs
-        PlaceDto.cs
-        NearbyPlaceDto.cs
-
-      Location/
-        MyLocationDto.cs
-
-    Services/
-      GeoIpLocationService.cs
-      EventPublisher.cs
-
-    wwwroot/
-      browser/            ← Angular build output
-
-    Program.cs
-    appsettings.json
-
-  ClientApp/
-    src/
-      app/
-        app.component.ts
-        app.component.html
-        places.service.ts
-        location.service.ts
-      environments/
-    angular.json
-    package.json
-
-docker-compose.yml
-GeoPlacesSpa.sln
-README.md
 ```
 
 ---
