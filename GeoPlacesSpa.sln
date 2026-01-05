@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11312.151 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoPlaces.Api", "backend\GeoPlaces.Api\GeoPlaces.Api.csproj", "{EC3E81B6-AEF6-49EC-8470-EC6584D006E7}"
 EndProject
@@ -15,8 +15,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoPlaces.Contracts", "backend\GeoPlaces.Contracts\GeoPlaces.Contracts.csproj", "{C9E4E6FD-AA1C-45B5-A5AD-A0D6BF30FEA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsLogger.API", "backend\EventsLogger.API\EventsLogger.API.csproj", "{1DF1077E-37A3-4E36-BD3E-9D663D4D75AF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoPlaces.Tests", "backend\GeoPlaces.Tests\GeoPlaces.Tests.csproj", "{8FD079F9-4120-490D-80FD-6FC5C78B7E8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,10 +50,6 @@ Global
 		{1DF1077E-37A3-4E36-BD3E-9D663D4D75AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF1077E-37A3-4E36-BD3E-9D663D4D75AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF1077E-37A3-4E36-BD3E-9D663D4D75AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FD079F9-4120-490D-80FD-6FC5C78B7E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FD079F9-4120-490D-80FD-6FC5C78B7E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FD079F9-4120-490D-80FD-6FC5C78B7E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FD079F9-4120-490D-80FD-6FC5C78B7E8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
