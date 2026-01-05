@@ -153,7 +153,7 @@ GeoPlaces/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
