@@ -78,4 +78,43 @@
       {{ p.category }} — {{ p.distance_meters ?? 'n/a' }} meters
     </li>
   </ul>
+
+  <h2 class="section-spacing">Create a GeoPlace</h2>
+
+  <div class="create-card">
+    <div class="create-grid">
+      <div class="form-row full">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="createName" placeholder="e.g., Bryant Park" />
+      </div>
+
+      <div class="form-row">
+        <label>Category</label>
+        <input type="text" [(ngModel)]="createCategory" placeholder="e.g., Park" />
+      </div>
+
+      <div class="form-row">
+        <label>Latitude</label>
+        <input type="number" [(ngModel)]="createLatitude" placeholder="40.7536" />
+      </div>
+
+      <div class="form-row">
+        <label>Longitude</label>
+        <input type="number" [(ngModel)]="createLongitude" placeholder="-73.9832" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" (click)="createPlace()" [disabled]="creating">
+        {{ creating ? 'Creating...' : 'Create' }}
+      </button>
+
+      <button type="button" class="btn-secondary" (click)="prefillFromMyLocation()" [disabled]="!myLocation">
+        Use my location
+      </button>
+
+      <span *ngIf="createError" class="error">{{ createError }}</span>
+      <span *ngIf="createSuccess" class="success">Created.</span>
+    </div>
+  </div>
 </div>

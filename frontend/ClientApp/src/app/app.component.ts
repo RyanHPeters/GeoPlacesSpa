@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { PlacesService, PlaceDto, NearbyPlaceDto } from './places.service';
+import { PlacesService, PlaceDto, NearbyPlaceDto, CreatePlaceRequest } from './places.service';
 import { LocationService, MyLocationDto } from './location.service';
 
 @Component({
@@ -32,6 +32,15 @@ export class AppComponent implements OnInit {
   page = 1;
   pageSize = 10;
 
+  // --- Create form state ---
+  createName = '';
+  createCategory = '';
+  createLatitude: number | null = null;
+  createLongitude: number | null = null;
+  creating = false;
+  createError: string | null = null;
+  createSuccess = false;
+
   get totalPages(): number {
     const pages = Math.ceil((this.totalCount || 0) / this.pageSize);
     return Math.max(1, pages);
@@ -49,6 +58,68 @@ export class AppComponent implements OnInit {
 
     // Common UX: also load the first page automatically.
     this.loadAllPlaces();
+  }
+
+  prefillFromMyLocation(): void {
+    if (!this.myLocation) return;
+    this.createLatitude = this.myLocation.latitude;
+    this.createLongitude = this.myLocation.longitude;
+    this.cdr.detectChanges();
+  }
+
+  createPlace(): void {
+    this.createError = null;
+    this.createSuccess = false;
+
+    const name = (this.createName ?? '').trim();
+    const category = (this.createCategory ?? '').trim();
+    const lat = this.createLatitude;
+    const lng = this.createLongitude;
+
+    if (!name || !category || lat == null || lng == null) {
+      this.createError = 'Name, category, latitude, and longitude are required.';
+      this.cdr.detectChanges();
+      return;
+    }
+
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+      this.createError = 'Latitude must be between -90 and 90; longitude must be between -180 and 180.';
+      this.cdr.detectChanges();
+      return;
+    }
+
+    const req: CreatePlaceRequest = {
+      name,
+      category,
+      latitude: lat,
+      longitude: lng
+    };
+
+    this.creating = true;
+    this.cdr.detectChanges();
+
+    this.places.createPlace(req).subscribe({
+      next: _ => {
+        this.createSuccess = true;
+        this.createName = '';
+        this.createCategory = '';
+        // Keep lat/lng as-is so user can add multiple nearby points quickly.
+        // If you prefer clearing, set them to null here.
+
+        // Refresh current page so the new record appears.
+        this.loadAllPlaces();
+      },
+      error: err => {
+        console.error(err);
+        // Try to surface server-provided ProblemDetails message if present.
+        const detail = err?.error?.detail;
+        this.createError = typeof detail === 'string' && detail.length ? detail : 'Failed to create place.';
+      },
+      complete: () => {
+        this.creating = false;
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   loadMyLocation() {

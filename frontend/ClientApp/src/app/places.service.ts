@@ -18,6 +18,13 @@ export interface NearbyPlaceDto {
   distance_meters: number | null;
 }
 
+export interface CreatePlaceRequest {
+  name: string;
+  category: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface GetPlacesQuery {
   page?: number;
   pageSize?: number;
@@ -73,5 +80,9 @@ export class PlacesService {
       .set('radiusMeters', radiusMeters);
 
     return this.http.get<NearbyPlaceDto[]>(`${this.baseUrl}/nearby`, { params });
+  }
+
+  createPlace(req: CreatePlaceRequest): Observable<PlaceDto> {
+    return this.http.post<PlaceDto>(this.baseUrl, req);
   }
 }

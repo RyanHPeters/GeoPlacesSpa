@@ -62,6 +62,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
 /* ---------- Location Card ---------- */
 .location-card {
   background: #eef2ff;
@@ -85,6 +95,9 @@ button:disabled {
   list-style: none;
   padding: 0;
   margin: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .list-item {
@@ -99,4 +112,67 @@ button:disabled {
 .list-item strong {
   display: block;
   font-weight: 600;
+}
+
+.section-spacing {
+  margin-top: 24px;
+}
+
+/* ---------- Create form ---------- */
+.create-card {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.create-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.create-grid .full {
+  grid-column: 1 / -1;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-weight: 600;
+}
+
+input {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+}
+
+.form-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.success {
+  color: #166534;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
 }
