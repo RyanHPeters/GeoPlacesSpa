@@ -18,6 +18,7 @@
 		<ProjectReference Include="..\GeoPlaces.Application\GeoPlaces.Application.csproj" />
 		<ProjectReference Include="..\GeoPlaces.Contracts\GeoPlaces.Contracts.csproj" />
 		<ProjectReference Include="..\GeoPlaces.Domain\GeoPlaces.Domain.csproj" />
+		<ProjectReference Include="..\GeoPlaces.Infrastructure\GeoPlaces.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -268,12 +268,12 @@ Ideal as a learning project, interview discussion piece, or foundation for more 
 
 ## TODO / Future Improvements
 
-### COMPLETE - Architecture and Boundaries
+### COMPLETED - Architecture and Boundaries
 - Separate concerns: move DB access out of controllers into a repository/service layer. Controllers should be thin orchestration.
 - Formalize DTOs: establish read/write DTOs and keep EF entities internal to the data layer. Avoid leaking spatial library types to the API surface.
 - Introduce a minimal domain layer so business rules do not live in controllers or infrastructure services.
 
-### COMPLETE - API Design and Contract Quality
+### COMPLETED - API Design and Contract Quality
 - Standardize response shapes (consistent envelopes and error formats).
 - Add API versioning (e.g., `/v1` route strategy).
 - Add pagination, sorting, and filtering to list endpoints.
@@ -314,7 +314,7 @@ Ideal as a learning project, interview discussion piece, or foundation for more 
 - Support per-environment configuration for logging, CORS, and external services.
 - Improve Docker Compose quality with health checks and documented ports.
 
-### Testing Strategy
+### COMPLETED - Testing Strategy
 - Add backend unit tests for validation and mapping logic.
 - Add backend integration tests using containerized Postgres/PostGIS.
 - Add contract tests to protect API response stability.
